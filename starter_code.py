@@ -4,42 +4,36 @@ import pygame, random
 pygame.init()
 
 #Set display surface
-# TODO: assign 1200 to WINDOW_WIDTH
-# TODO: assign 700 to WINDOW_HEIGHT
-# TODO: assign pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT)) to display_surface
-# TODO: call the pygame.display.set_caption() function.  Passing in "Space Invaders" as the argument.
+WINDOW_WIDTH = 1200
+WINDOW_HEIGHT = 700
+pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Space Invaders")
 
 #Set FPS and clock
-# TODO: assign 60 to FPS
-# TODO: assign pygame.time.Clock() to clock
+FPS = 60
+clock = pygame.time.Clock()
 
 #Define Classes
 class Game():
-    """A class to help control and update gameplay"""
-
     def __init__(self, player, alien_group, player_bullet_group, alien_bullet_group):
-        """Initialize the game"""
-        pass
+     pass
 
     def update(self):
-        """Update the game"""
-        pass
+     pass
 
     def draw(self):
-        """Draw the HUD and other information to display"""
-        pass
+     pass
 
     def shift_aliens(self):
-        """Shift a wave of aliens down the screen and reverse direction"""
+        """Shift the aliens"""
         pass
 
-
     def check_collisions(self):
-        """Check for collisions"""
+        """Check if the aliens collide with the player"""
         pass
 
     def check_round_completion(self):
-        """Check to see if a player has completed a single round"""
+        """Check if the round is complete"""
         pass
 
 
@@ -132,31 +126,46 @@ class AlienBullet(pygame.sprite.Sprite):
 #Create bullet groups
 # TODO: assign pygame.sprite.Group() to my_player_bullet_group
 # TODO: assign pygame.sprite.Group() to my_alien_bullet_group
-
+my_player_bullet_group = pygame.sprite.Group()
+my_alien_bullet_group = pygame.sprite.Group()
 #Create a player group and Player object
 # TODO: assign pygame.sprite.Group() to my_player_group
+my_player_group = pygame.sprite.Group()
 # TODO: assign Player(my_player_bullet_group) to my_player
+my_player = Player(my_player_bullet_group)
 # TODO: call the my_player_group.add() function and pass in my_player as the argument.
 
 #Create an alien group.  Will add Alien objects via the game's start new round method
 # TODO: assign pygame.sprite.Group() to my_alien_group
-
+my_alien_group = pygame.sprite.Group()
 #Create a Game object
 # TODO: assign Game(my_player, my_alien_group, my_player_bullet_group, my_alien_bullet_group) to my_game
+my_game = Game(my_player, my_alien_group, my_player_bullet_group, my_alien_bullet_group)
 # TODO: call the my_game.start_new_round() function with no arguments.
 
 #The main game loop
 # TODO: assign True to running
+running = True
 # TODO: while running:
+while running:
     # TODO: not really a todo here just a note to WATCH YOUR INDENTING.
     # TODO: for event in pygame.event.get()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
         # Check to see if the user wants to quit
         # TODO: if event.type == pygame.QUIT
+        if event.type == pygame.QUIT:
+            running = False
             # TODO: assign False to running
         #The player wants to fire
         # TODO: if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:
             # TODO: if event.key == pygame.K_SPACE:
+         if event.key == pygame.K_SPACE:
+            my_player.fire()
                 # TODO: call my_player.fire() function with no arguments.
+
 
     #Fill the display
     # TODO: call display_surface.fill() function and pass in (0, 0, 0) for the argument.
