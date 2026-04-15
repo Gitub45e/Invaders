@@ -33,13 +33,12 @@ class Game():
         self.alien_bullet_group.draw(display_surface)
         self.player_bullet_group.draw(display_surface)
     def shift_aliens(self):
-        """Shift the aliens"""
+        """Shift the aliens""
 
 
     def check_collisions(self):
-        """Check for collisions"""
-        check_alien_collisions = pygame.sprite.spritecollide(self, self.alien_group, False)
-        check_player_collisions = pygame.sprite.spritecollide(self, self.player_bullet_group, False)
+     """Check for collisions""""""
+            pass
 
     def check_round_completion(self):
         """Check to see if a player has completed a single round"""
@@ -50,21 +49,20 @@ class Game():
 
     def check_game_status(self, main_text, sub_text):
         """Check to see the status of the game and how the player died"""
-        check_player_status = pygame.sprite.spritecollide(self, self.player_bullet_group, False)
-        check_alien_status = pygame.sprite.spritecollide(self, self.alien_group, False)
-        check_round_status = pygame.sprite.spritecollide(self, self.player_bullet_group, False)
+        pass
 
     def pause_game(self, main_text, sub_text):
         """Pauses the game"""
-        pause_game = pygame.sprite.Group()
-        self.start_new_round()
+        pass
 
 
     def reset_game(self):
         """Reset the game"""
         pass
 
-    def __init__(self, bullet_group):
+class Player(pygame.sprite.Sprite):
+    """A class to model a spaceship the user can control"""
+    def  __init__(self, bullet_group):
         """Initialize the player"""
         super().__init__()
         # TODO: assign pygame.image.load("player_ship.png") to self.image
@@ -122,6 +120,52 @@ class Alien(pygame.sprite.Sprite):
 
         self.shoot_sound.play("alien")
 
+class PlayerBullet(pygame.sprite.Sprite):
+    """A class to model a bullet fired by the player"""
+
+    def __init__(self, x, y, bullet_group):
+        """Initialize the bullet"""
+        super().__init__()
+        self.image_pygame.image.load("green_laser.png")
+        self.rect= self.image.get_rect()
+        self.rect.center = x
+        self.rect.center = y
+        self.velocity = 10
+        bullet_group.add()
+    def update(self):
+        """Update the bullet"""
+        self.update(my_player_bullet_group)
+        self.update(my_alien_bullet_group)
+        self.velocity -= self.rect.y
+
+        #If the bullet is off the screen, kill it
+        if self.rect.bottom <0:
+            self.kill()
+
+class AlienBullet(pygame.sprite.Sprite):
+    """A class to model a bullet fired by the alien"""
+
+    def __init__(self, x, y, bullet_group):
+        """Initialize the bullet"""
+        super().__init__()
+        # TODO: assign y to self.rect.center y
+        self.image.pygame.image.load("red_laser.png")
+        self.image= self.image.get_rect()
+        self.rect.centerx = x
+        self.rect.centery = y
+
+
+
+        # TODO: assign 10 to self.velocity
+        # TODO: call bullet_group.add() passing in self
+
+    def update(self):
+        """Update the bullet"""
+        # TODO: add self.velocity to self.rect.y
+
+        #If the bullet is off the screen, kill it
+        # TODO: if self.rect.top > WINDOW_HEIGHT:
+            # TODO: call self.kill()
 
 
 # Create bullet groups
